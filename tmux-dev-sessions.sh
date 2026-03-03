@@ -1,23 +1,5 @@
 #!/usr/bin/env bash
 
-# Tmux Session
-#
-# Usage:
-#   tms <client> <focus>
-#   tms -h | --help
-#   tms --version
-#
-# Options:
-#   -h --help     Show this help message.
-#   -v --version  Show version information.
-
-VERSION='Tmux Session 1.0.0'
-# shellcheck disable=SC1091
-source docopts.sh
-usage=$(docopt_get_help_string "$0")
-eval "$(docopts -A ARGS -V "$VERSION" -h "$usage" : "$@")"
-# docopt_print_ARGS
-
 # $1 the command to run
 # $2 clear again, after cmd is run
 run_cmd() {
