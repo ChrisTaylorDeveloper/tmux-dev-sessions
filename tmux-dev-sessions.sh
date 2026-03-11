@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+win_sh='SH '
+win_git='GIT '
+win_gitgraph='GITGRAPH '
+win_vim='VI '
+
 # $1 the command to run
 # $2 clear again, after cmd is run
 run_cmd() {
@@ -21,7 +26,7 @@ place_cmd() {
 # $3 window title
 # $4 directory
 win_git() {
-  tmux new-window -t "$1":"$2" -n "(git) $3"
+  tmux new-window -t "$1":"$2" -n "$win_git$3"
   run_cmd "cd $4"
   run_cmd gitgraph
   tmux splitw -h
@@ -35,7 +40,7 @@ win_git() {
 # $4 directory
 # $5 opening files list
 win_nvim() {
-  tmux new-window -t "$1":"$2" -n "(vi) $3"
+  tmux new-window -t "$1":"$2" -n "$win_vim$3"
   run_cmd "cd $4"
   if [ -z "$5" ]; then
     place_cmd "nvim"
@@ -49,7 +54,7 @@ win_nvim() {
 # $3 window title
 # $4 directory
 win_git_graph() {
-  tmux new-window -t "$1":"$2" -n "(git graph) $3"
+  tmux new-window -t "$1":"$2" -n "$win_gitgraph$3"
   run_cmd "cd $4"
   place_cmd 'gitgraph'
 }
@@ -59,7 +64,7 @@ win_git_graph() {
 # $3 window title
 # $4 directory
 win_git_status() {
-  tmux new-window -t "$1":"$2" -n "(git) $3"
+  tmux new-window -t "$1":"$2" -n "$win_git$3"
   run_cmd "cd $4"
   run_cmd 'git status'
 }
@@ -69,7 +74,7 @@ win_git_status() {
 # $3 window title
 # $4 directory
 win_bash_deprecated() {
-  tmux new-window -t "$1":"$2" -n "(sh) $3"
+  tmux new-window -t "$1":"$2" -n "$win_sh$3"
   run_cmd "cd $4" "clear"
 }
 
@@ -78,7 +83,7 @@ win_bash_deprecated() {
 # $3 directory
 # $4 window title
 win_bash() {
-  tmux new-window -t "$1":"$2" -n "(sh) $4"
+  tmux new-window -t "$1":"$2" -n "$win_sh$4"
   run_cmd "cd $3" "clear"
 }
 
